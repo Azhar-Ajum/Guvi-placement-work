@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Management</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+   <style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(120deg, #3f87a6, #ebf8e1, #f69d3c);
+        background-size: 300% 300%;
+        animation: gradientAnimation 10s infinite ease-in-out;
+    }
+
+    .overlay {
+        background: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .header {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .header h1 {
+        color : white;
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        animation: fadeInDown 1s ease-in-out;
+    }
+
+    .header p {
+        font-size: 1.3rem;
+        color: #d1d1d1;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .container {
+        max-width: 600px; /* Fixed size for laptops */
+        margin: 50px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: slideIn 1.5s ease-in-out;
+    }
+
+    .btn-custom {
+        width: 100%;
+        margin: 10px 0;
+        font-size: 1.2rem;
+        font-weight: bold;
+        animation: fadeInUp 1s ease-in-out;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: #ccc;
+        font-size: 1rem;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 768px) {
+        .container {
+            width: 90%;
+            max-width: none; /* Override fixed size for smaller screens */
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+        }
+
+        .btn-custom {
+            font-size: 1rem;
+        }
+    }
+
+    /* Animations */
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+</style>
+   
+</head>
+<body>
+    <!-- Background Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>To-Do List Task Manager</h1>
+        <p>Organize your tasks with style and ease!</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Add Task Button -->
+        <form th:action="@{/tasks/add}" method="get">
+            <button type="submit" class="btn btn-primary btn-custom">Add New Task</button>
+        </form>
+
+        <!-- Search by ID Button -->
+        <form th:action="@{/tasks/searchPage}" method="get">
+            <button type="submit" class="btn btn-secondary btn-custom">Search Task by ID</button>
+        </form>
+
+        <!-- View All Tasks Button -->
+        <form th:action="@{/tasks/viewAll}" method="get">
+            <button type="submit" class="btn btn-success btn-custom">View All Tasks</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>Designed by Mohamed Azharudeen</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
